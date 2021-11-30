@@ -1,0 +1,47 @@
+FROM bitnami/minideb:latest
+LABEL maintainer "jsdclxvi <risa@smk-binaprofesibgr.sch.id>"
+
+ARG LC_ALL=C.UTF-8
+ARG DEBIAN_FRONTEND=noninteractive
+
+ENV TZ=Etc/GMT-7
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update -qqy && \
+    apt-get install --no-install-recommends -y \
+        bc \
+        bison \
+        curl \
+        ccache \
+        ca-certificates \
+        flex \
+        gcc \
+        git \
+        glibc-doc \
+        jq \
+        libxml2 \
+        libtinfo5 \
+        libc6-dev \
+        libssl-dev \
+        libstdc++6 \
+        make \
+        openssl \
+        python \
+        rclone \
+        ssh \
+        tar \
+        tzdata \
+        wget \
+        zip && \
+    apt-get autoremove -qqy && \
+    apt-get autoclean -qqy
+
+RUN git clone https://github.com/hadadarjt/proton-clang.git -b 20210123 --depth=1 kernel/clang
+
+RUN rm -rf /var/lib/apt/lists/*
+RUN git config --global user.name "jsdclxvi"
+RUN git config --global user.email "risa@smk-binaprofesibgr.sch.id"
+ENV USE_CCACHE=1
+RUN apt-get clean --dry-run
+
+CMD ["/bin/bash"]
