@@ -36,12 +36,13 @@ RUN apt-get update -qqy && \
     apt-get autoremove -qqy && \
     apt-get autoclean -qqy
 
-RUN git clone https://github.com/hadadarjt/proton-clang.git -b 20210123 --depth=1 kernel/clang
-
 RUN rm -rf /var/lib/apt/lists/*
 RUN git config --global user.name "jsdclxvi"
 RUN git config --global user.email "risa@smk-binaprofesibgr.sch.id"
 ENV USE_CCACHE=1
 RUN apt-get clean --dry-run
+RUN cd
+RUN mkdir -p kernel
+RUN git clone https://github.com/hadadarjt/proton-clang.git -b 20210123 --depth=1 kernel/clang
 
 CMD ["/bin/bash"]
