@@ -19,10 +19,10 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./bitnami/kernel
+        file: ./ubuntu/ubuntu-latest
         platforms: linux/amd64
         push: true
-        tags: risawitama/build:kernel
+        tags: risawitama/build:buildbot
         
     - name: send telegram message
       run: |
