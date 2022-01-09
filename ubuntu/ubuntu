@@ -1,4 +1,4 @@
-FROM ubuntu:trusty-20191217
+FROM ubuntu:bionic
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV USER docker 
