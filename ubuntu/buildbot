@@ -1,3 +1,3 @@
 FROM apon77/aosp:cirrus
 
-ENV GH_TOKEN=${{ secrets.GH_TOKEN }}
+ENV GH_TOKEN=kntl
